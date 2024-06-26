@@ -47,6 +47,7 @@ const EntradasTable: React.FC = () => {
   const [endDate, setEndDate] = useState('');
   const [nome, setNome] = useState('');
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const getData = async () => {
     try {
@@ -86,6 +87,7 @@ const EntradasTable: React.FC = () => {
     if (startIndex > 0) {
       setStartIndex(startIndex - rowsPerPage);
       setEndIndex(endIndex - rowsPerPage);
+      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -93,8 +95,11 @@ const EntradasTable: React.FC = () => {
     if (endIndex < data.length) {
       setStartIndex(startIndex + rowsPerPage);
       setEndIndex(endIndex + rowsPerPage);
+      setCurrentPage(currentPage + 1);
     }
   };
+
+  const totalPages = Math.ceil(data.length / rowsPerPage);
 
   return (
     <>
@@ -180,7 +185,7 @@ const EntradasTable: React.FC = () => {
       <Pagination>
         <PaginationPrevious onClick={handlePreviousPage} />
         <PaginationContent>
-          <PaginationItem>{startIndex / rowsPerPage + 1}</PaginationItem>
+          Página {currentPage} de {totalPages}
         </PaginationContent>
         <PaginationNext onClick={handleNextPage} />
       </Pagination>
