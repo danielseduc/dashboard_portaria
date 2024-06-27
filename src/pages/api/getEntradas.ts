@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     LEFT JOIN gw_assu.equipamentos equip ON entradas_equip.equipamentoId = equip.equipamentoId
     LEFT JOIN gw_assu.portarias portaria ON entradas.portariaId = portaria.portariaId
     LEFT JOIN gw_assu.porteiros porteiro ON entradas.porteiroId = porteiro.porteiroId
-    LEFT JOIN gw_assu.liberadores liberador ON entradas.liberadorId = entradas.liberadorId
+    LEFT JOIN gw_assu.liberadores liberador ON entradas.liberadorId = liberador.liberadorId
     LEFT JOIN gw_assu.saidas saidas ON saidas.entradaId = entradas.entradaId
     LEFT JOIN gw_assu.portarias portaria_saida ON saidas.portariaId = portaria_saida.portariaId
     LEFT JOIN gw_assu.porteiros porteiro_saida ON saidas.porteiroId = porteiro_saida.porteiroId
