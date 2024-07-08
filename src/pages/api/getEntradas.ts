@@ -22,7 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     portariaId,
     liberadorId
   from gw_assu.entradas
-  limit 3
   `;
 
   try {
