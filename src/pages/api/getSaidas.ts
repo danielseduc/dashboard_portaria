@@ -12,17 +12,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   let query = `
   select
-    entradaId,
+    saidaId,
     equipamentoId,
     funcionarioId,
-    entradaReferenciaId,
+    saidaReferenciaId,
     porteiroId,
-    DATE_FORMAT(CONVERT_TZ(dataHora, '+00:00', '-03:00'), '%d/%m/%Y %H:%i:%s') AS 'datahoraentrada',
+    DATE_FORMAT(CONVERT_TZ(dataHora, '+00:00', '-03:00'), '%d/%m/%Y %H:%i:%s') AS 'datahorasaida',
     registroManual,
     portariaId,
-    liberadorId
-  from gw_assu.entradas
-  limit 3
+    entradaId
+  from gw_assu.saidas
   `;
 
   try {
@@ -34,4 +33,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await connection.end();
   }
 }
-

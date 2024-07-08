@@ -12,17 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   let query = `
   select
-    entradaId,
-    equipamentoId,
-    funcionarioId,
-    entradaReferenciaId,
-    porteiroId,
-    DATE_FORMAT(CONVERT_TZ(dataHora, '+00:00', '-03:00'), '%d/%m/%Y %H:%i:%s') AS 'datahoraentrada',
-    registroManual,
-    portariaId,
-    liberadorId
-  from gw_assu.entradas
-  limit 3
+    sum(dentro) as qtd_dentro
+  from gw_assu.funcionarios
   `;
 
   try {
@@ -34,4 +25,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await connection.end();
   }
 }
-
